@@ -1,6 +1,7 @@
 # Create the main EC2 instance
 # https://www.terraform.io/docs/providers/aws/r/instance.html
 resource "aws_instance" "this" {
+  # oak9: SecurityGroupIds is not configured
   # oak9: aws_instance.security_groups is not configured
   instance_type          = "${var.instance_type}"
   ami                    = "${var.instance_ami}"
