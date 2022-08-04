@@ -1,6 +1,7 @@
 # Add root resource to the API (it it needs to be included separately from the "proxy" resource defined below), which forwards to our Lambda:
 
 resource "aws_api_gateway_method" "proxy_root" {
+  # oak9: aws_api_gateway_method.authorizer_id is not configured
   rest_api_id   = "${aws_api_gateway_rest_api.this.id}"
   resource_id   = "${aws_api_gateway_rest_api.this.root_resource_id}"
   http_method   = "ANY"
