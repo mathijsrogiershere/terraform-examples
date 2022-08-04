@@ -4,6 +4,7 @@ resource "random_string" "snapshot_suffix" {
 }
 
 resource "aws_rds_cluster" "this" {
+  # oak9: aws_rds_cluster.storage_encrypted is not configured
   cluster_identifier      = "${var.prefix}-${var.environment}"
   engine                  = "aurora"
   engine_mode             = "serverless"
