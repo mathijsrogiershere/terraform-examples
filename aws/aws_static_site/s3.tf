@@ -28,6 +28,7 @@ resource "aws_s3_bucket" "this" {
 # $ aws s3 cp --acl public-read ...
 # https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl
 resource "aws_s3_bucket_policy" "this" {
+  # oak9: PolicyDocument.Statement is not configured
   depends_on = ["aws_s3_bucket.this"]                      # because we refer to the bucket indirectly, we need to explicitly define the dependency
   count      = "${var.bucket_override_name == "" ? 1 : 0}"
   bucket     = "${local.bucket_name}"
