@@ -1,6 +1,7 @@
 # Create the CloudFront distribution through which the site contents will be served
 # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html
 resource "aws_cloudfront_distribution" "this" {
+  # oak9: aws_cloudfront_distribution.origin.s3_origin_config.origin_access_identity is not configured
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "${var.default_root_object}"
@@ -33,7 +34,7 @@ resource "aws_cloudfront_distribution" "this" {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = "default"
-    viewer_protocol_policy = "${var.viewer_https_only ? "redirect-to-https" : "allow-all"}"
+    viewer_protocol_policy = "https-only"
     compress               = true
 
     min_ttl     = "${var.cache_ttl_override >= 0 ? var.cache_ttl_override : 0}"     # for reference: AWS default is 0
@@ -134,6 +135,6 @@ resource "aws_cloudfront_distribution" "this" {
   viewer_certificate {
     acm_certificate_arn      = "${aws_acm_certificate_validation.this.certificate_arn}"
     ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.1_2016"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 }

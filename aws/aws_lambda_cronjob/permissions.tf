@@ -67,6 +67,7 @@ resource "aws_cloudwatch_event_target" "this" {
 }
 
 resource "aws_lambda_permission" "this" {
+  # oak9: aws_lambda_permission.principal is not configured
   statement_id  = "${local.prefix_with_name}---scheduled-invocation"
   action        = "lambda:InvokeFunction"
   function_name = "${local.function_id}"

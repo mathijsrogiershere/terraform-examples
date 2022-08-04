@@ -13,6 +13,7 @@ module "acm" {
 }
 
 resource "aws_cloudfront_distribution" "this" {
+  # oak9: aws_cloudfront_distribution.origin.s3_origin_config.origin_access_identity is not configured
   origin {
     domain_name = var.public_alb_domain
     origin_id   = "alb"
@@ -46,7 +47,7 @@ resource "aws_cloudfront_distribution" "this" {
 
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "https-only"
     min_ttl                = 0
     default_ttl            = 0
     max_ttl                = 0
@@ -110,7 +111,7 @@ resource "aws_cloudfront_distribution" "this" {
   viewer_certificate {
     acm_certificate_arn      = module.acm.this_acm_certificate_arn
     ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.1_2016"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   # By default, cloudfront caches error for five minutes. There can be situation when a developer has accidentally broken the website and you would not want to wait for five minutes for the error response to be cached.

@@ -17,6 +17,9 @@ module "acm" {
 
 ## S3
 resource "aws_s3_bucket" "this" {
+  # oak9: aws_s3_bucket.acl is not configured
+  # oak9: aws_s3_bucket_public_access_block is not configured
+  # oak9: aws_s3_bucket.server_side_encryption_configuration is not configured
   bucket = var.bucket_name
   tags   = var.tags
 }
@@ -51,6 +54,7 @@ data "aws_iam_policy_document" "s3_policy_document" {
 }
 
 resource "aws_s3_bucket_policy" "s3_policy" {
+  # oak9: PolicyDocument.Statement is not configured
   bucket = aws_s3_bucket.this.id
   policy = data.aws_iam_policy_document.s3_policy_document.json
 }
@@ -92,7 +96,7 @@ resource "aws_cloudfront_distribution" "this" {
       }
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "https-only"
     min_ttl                = var.min_ttl
     default_ttl            = var.default_ttl
     max_ttl                = var.max_ttl
@@ -111,7 +115,7 @@ resource "aws_cloudfront_distribution" "this" {
   viewer_certificate {
     acm_certificate_arn      = module.acm.this_acm_certificate_arn
     ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.1_2016"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   # By default, cloudfront caches error for five minutes. There can be situation when a developer has accidentally broken the website and you would not want to wait for five minutes for the error response to be cached.

@@ -24,6 +24,7 @@ EOF
 
 # Allow API Gateway to invoke our functions:
 resource "aws_lambda_permission" "this" {
+  # oak9: aws_lambda_permission.principal is not configured
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
   function_name = "${local.function_arn}"

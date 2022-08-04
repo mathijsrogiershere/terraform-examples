@@ -1,9 +1,11 @@
 resource "aws_api_gateway_rest_api" "this" {
+  # oak9: aws_api_gateway_rest_api.policy is not configured
   name        = "${local.prefix_with_domain}"
   description = "${var.comment_prefix}${var.api_domain}"
 }
 
 resource "aws_api_gateway_deployment" "this" {
+  # oak9: aws_api_gateway_deployment.stage_description is not configured
   rest_api_id = "${aws_api_gateway_rest_api.this.id}"
 
   depends_on = [
@@ -13,6 +15,7 @@ resource "aws_api_gateway_deployment" "this" {
 }
 
 resource "aws_api_gateway_stage" "this" {
+  # oak9: MethodSettings.HttpMethod is not configured
   stage_name    = "${var.stage_name}"
   description   = "${var.comment_prefix}${var.api_domain}"
   rest_api_id   = "${aws_api_gateway_rest_api.this.id}"
@@ -21,6 +24,10 @@ resource "aws_api_gateway_stage" "this" {
 }
 
 resource "aws_api_gateway_method_settings" "this" {
+  # oak9: aws_api_gateway_method.authorization is not configured
+  # oak9: aws_api_gateway_method.authorizer_id is not configured
+  # oak9: aws_api_gateway_method.resource_id is not configured
+  # oak9: aws_api_gateway_method.http_method is not configured
   rest_api_id = "${aws_api_gateway_rest_api.this.id}"
   stage_name  = "${aws_api_gateway_stage.this.stage_name}"
   method_path = "*/*"
@@ -35,6 +42,9 @@ resource "aws_api_gateway_method_settings" "this" {
 }
 
 resource "aws_api_gateway_domain_name" "this" {
+  # oak9: aws_api_gateway_domain_name.mutual_tls_authentication.truststore_uri is not configured
+  # oak9: aws_api_gateway_domain_name.certificate_arn is not configured
+  security_policy = "TLS_1_2"
   domain_name              = "${var.api_domain}"
   regional_certificate_arn = "${aws_acm_certificate_validation.this.certificate_arn}"
 

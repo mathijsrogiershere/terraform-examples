@@ -33,6 +33,7 @@ data "archive_file" "lambda_zip" {
 }
 
 resource "aws_lambda_function" "viewer_request" {
+  # oak9: aws_lambda_function.vpc_config.security_group_ids is not configured
   provider = "aws.us_east_1" # because: error creating CloudFront Distribution: InvalidLambdaFunctionAssociation: The function must be in region 'us-east-1'
 
   # lambda_zip.output_path will be absolute, i.e. different on different machines.
@@ -51,6 +52,7 @@ resource "aws_lambda_function" "viewer_request" {
 }
 
 resource "aws_lambda_function" "viewer_response" {
+  # oak9: aws_lambda_function.vpc_config.security_group_ids is not configured
   provider = "aws.us_east_1" # because: error creating CloudFront Distribution: InvalidLambdaFunctionAssociation: The function must be in region 'us-east-1'
 
   # lambda_zip.output_path will be absolute, i.e. different on different machines.

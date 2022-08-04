@@ -1,5 +1,6 @@
 # This aws_lambda_function is used when invoked with a local zipfile
 resource "aws_lambda_function" "local_zipfile" {
+  # oak9: aws_lambda_function.vpc_config.security_group_ids is not configured
   count = "${var.function_s3_bucket == "" ? 1 : 0}"
 
   # These are SPECIFIC to the deployment method:
@@ -23,6 +24,7 @@ resource "aws_lambda_function" "local_zipfile" {
 
 # This aws_lambda_function is used when invoked with a zipfile in S3
 resource "aws_lambda_function" "s3_zipfile" {
+  # oak9: aws_lambda_function.vpc_config.security_group_ids is not configured
   count = "${var.function_s3_bucket == "" ? 0 : 1}"
 
   # These are SPECIFIC to the deployment method:
