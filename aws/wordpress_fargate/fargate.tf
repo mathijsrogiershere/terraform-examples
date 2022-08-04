@@ -124,6 +124,7 @@ resource "aws_security_group" "wordpress" {
 }
 
 resource "aws_ecs_service" "this" {
+  # oak9: aws_ecs_service.iam_role is not configured
   name             = "${var.prefix}-${var.environment}"
   cluster          = aws_ecs_cluster.this.id
   task_definition  = aws_ecs_task_definition.this.arn
