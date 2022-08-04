@@ -3,6 +3,7 @@ data "aws_region" "current" {}
 
 # Create the S3 bucket in which the static content for the site should be hosted
 resource "aws_s3_bucket" "this" {
+  # oak9: aws_s3_bucket.acl is not configured
   # oak9: aws_s3_bucket_public_access_block.ignore_public_acls is not configured
   # oak9: aws_s3_bucket_public_access_block.restrict_public_buckets is not configured
   # oak9: aws_s3_bucket.server_side_encryption_configuration is not configured
