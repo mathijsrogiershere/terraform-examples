@@ -17,6 +17,7 @@ module "acm" {
 
 ## S3
 resource "aws_s3_bucket" "this" {
+  # oak9: aws_s3_bucket.server_side_encryption_configuration is not configured
   bucket = var.bucket_name
   tags   = var.tags
 }
