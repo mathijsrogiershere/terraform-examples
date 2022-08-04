@@ -46,7 +46,7 @@ resource "aws_cloudfront_distribution" "this" {
 
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "https-only"
     min_ttl                = 0
     default_ttl            = 0
     max_ttl                = 0
