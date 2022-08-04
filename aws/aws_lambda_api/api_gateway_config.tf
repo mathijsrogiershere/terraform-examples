@@ -35,6 +35,7 @@ resource "aws_api_gateway_method_settings" "this" {
 }
 
 resource "aws_api_gateway_domain_name" "this" {
+  security_policy = "TLS_1_2"
   domain_name              = "${var.api_domain}"
   regional_certificate_arn = "${aws_acm_certificate_validation.this.certificate_arn}"
 
