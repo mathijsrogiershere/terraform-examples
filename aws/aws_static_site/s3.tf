@@ -3,6 +3,7 @@ data "aws_region" "current" {}
 
 # Create the S3 bucket in which the static content for the site should be hosted
 resource "aws_s3_bucket" "this" {
+  # oak9: aws_s3_bucket.server_side_encryption_configuration is not configured
   count  = "${var.bucket_override_name == "" ? 1 : 0}"
   bucket = "${local.bucket_name}"
   tags   = "${var.tags}"
