@@ -1,4 +1,5 @@
 resource "aws_api_gateway_rest_api" "this" {
+  # oak9: aws_api_gateway_rest_api.policy is not configured
   name        = "${local.prefix_with_domain}"
   description = "${var.comment_prefix}${var.api_domain}"
 }
