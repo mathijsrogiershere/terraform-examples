@@ -21,6 +21,7 @@ resource "aws_api_gateway_stage" "this" {
 }
 
 resource "aws_api_gateway_method_settings" "this" {
+  # oak9: aws_api_gateway_method.authorizer_id is not configured
   # oak9: aws_api_gateway_method.resource_id is not configured
   # oak9: aws_api_gateway_method.http_method is not configured
   rest_api_id = "${aws_api_gateway_rest_api.this.id}"
