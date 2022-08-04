@@ -35,6 +35,7 @@ resource "aws_api_gateway_method_settings" "this" {
 }
 
 resource "aws_api_gateway_domain_name" "this" {
+  # oak9: aws_api_gateway_domain_name.mutual_tls_authentication.truststore_uri is not configured
   # oak9: aws_api_gateway_domain_name.certificate_arn is not configured
   security_policy = "TLS_1_2"
   domain_name              = "${var.api_domain}"
