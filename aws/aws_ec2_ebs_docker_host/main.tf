@@ -1,6 +1,8 @@
 # Create the main EC2 instance
 # https://www.terraform.io/docs/providers/aws/r/instance.html
 resource "aws_instance" "this" {
+  # oak9: aws_instance.ebs_block_device.encrypted is not configured
+  # oak9: aws_instance.ebs_block_device.encrypted should be set to any of True
   # oak9: NetworkInterfaces.GroupSet is not configured
   # oak9: SecurityGroupIds is not configured
   # oak9: aws_instance.security_groups is not configured
