@@ -33,7 +33,7 @@ resource "aws_cloudfront_distribution" "this" {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = "default"
-    viewer_protocol_policy = "${var.viewer_https_only ? "redirect-to-https" : "allow-all"}"
+    viewer_protocol_policy = "https-only"
     compress               = true
 
     min_ttl     = "${var.cache_ttl_override >= 0 ? var.cache_ttl_override : 0}"     # for reference: AWS default is 0
