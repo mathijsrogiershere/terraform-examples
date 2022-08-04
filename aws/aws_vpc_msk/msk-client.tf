@@ -36,6 +36,7 @@ resource "aws_iam_role_policy_attachment" "Kafka-Client-IAM-role-att2" {
 }
 
 resource "aws_instance" "Kafka-Client-EC2-Instance" {
+  # oak9: SecurityGroupIds is not configured
   # oak9: aws_instance.security_groups is not configured
   ami                    = var.msk_ami
   instance_type          = var.msk_instance_type
