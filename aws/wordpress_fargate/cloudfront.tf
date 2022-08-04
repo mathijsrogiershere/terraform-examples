@@ -13,6 +13,7 @@ module "acm" {
 }
 
 resource "aws_cloudfront_distribution" "this" {
+  # oak9: aws_cloudfront_distribution.origin.s3_origin_config.origin_access_identity is not configured
   origin {
     domain_name = var.public_alb_domain
     origin_id   = "alb"
