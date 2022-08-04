@@ -4,6 +4,7 @@ resource "aws_api_gateway_rest_api" "this" {
 }
 
 resource "aws_api_gateway_deployment" "this" {
+  # oak9: aws_api_gateway_deployment.stage_description is not configured
   rest_api_id = "${aws_api_gateway_rest_api.this.id}"
 
   depends_on = [
